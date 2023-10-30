@@ -1,0 +1,304 @@
+# 자바 지식체계 내용 계열화
+
+1. 자바의 기초
+	1) 기본 설치 방법
+	2) 핵심적인 단축키(활용)
+	3) 주석 처리
+	4) 자바 프로그램의 출력 처리
+	5) 자바 프로그램의 입력 처리
+	
+2. 자바의 변수(메모리 처리 1단계)
+	0) 자바의 메모리 분류..main()가 있는 곳에 사용
+		stack - 1단계 메모리
+		heap - 2단계 메모리
+	1) 기본 데이터 유형
+		숫자형 : 정수 byte short **int long
+				실수(소수점) float **double
+					double num03 = 3.14; d생략 가능
+					float num04 = 3.14f; 
+		문자형 : char ch01 = 'A';
+		boolean형(참/거짓) : boolean isPass = num01>=70;
+							boolean var01 = true/false;
+	2) 데이터 유형의 형변화
+		작은 ==> 큰 유형의 범위(promote, 자동형변환)
+		큰 ==> 작은(casting)
+		연산식에서 원하는 데이터유형으로 표현(casting)
+	3) 변수 선언 규칙
+		숫자형 불가	..ex)int 25Num;
+		내장코드 불가	..ex) String break;
+		선언된 변수를 다시 선언 불가	..ex) int num01 = 25;
+									 int num01; 	//오류
+		대소문자 구분	..EX) INT num01; int Num01;		//서로 다른 변수로 인식
+		특수문자는 $_만 허용한다.
+		※  가독성(에러발생하지 않지만 객체 프로그램에서 효율적으로 변수활용)
+			- 일반 변수는 솜문자선언
+			- 상수는 대문자로 선언 static final PI = 3.14;
+			- 합성어는 구분을 위한 대문자를 중간에 추가하거나 _로 구분한다.
+				..ex) int setNum = 25; int grade_score=50;
+			- 클래스명은 첫자만 대문자로 시작	..ex)class Parson{}
+			- 메소드명은 소문자로 시작 
+				void setName(String name){}
+3. 자바의 연산자
+	1) 대입연산자
+		int num = 25;
+	2) 증감연산자
+		num01++;	num02--;	num01+=3;	num02=5;
+	3) 산술연산자
+		+, -, *, /, %(나머지값)
+		정수/정수 : 정수, (double)정수/정수 : 실수
+		- 우선순위 : (), */, +- 
+	4) 비교연산자
+		>, >=, <, <=, ==, !=
+		(주의) 문자열 비교시는 equals()를 사용(예외적으로 자바만)
+	5) 논리연산자
+		조건1 && 조건2 : 두 조건이 모두 다 true일 때, true
+			ex) 아이디 패드워드 모두가 맞을때 인증
+				점수가 70~80사이일 때 C학점
+				pt>= && pt<80
+		조건1 || 조건2 : 두 주건이 모두 다 false일 때, false
+						하나라도 true이면 true
+		!(조건1) : 조건값이 true이면 false, false이면 true
+	6) 삼항연산자
+		조건?처리결과데이터1:처리결과데이터2
+		String result = pt>=80:"합격":"불합격";	=> pt가 80점 이상일 때 "합격" 그 외는 "불합격"
+4. 조건문 처리
+	*if문
+		if(조건문){
+		조건문이 true일 때 , 처리할 내용
+		}	
+		if(조건문) {
+		조건문이 true일 때, 처리할 내용
+		}else{
+			조건문이 false일 떄, 처리할 내용
+		}
+	*else if
+		if(조건1) {
+			조건1일때
+		}else if(조건2){
+			조건2일떄
+		}else if(조건3){
+			조건3일때
+		}else{
+			위가 모두 포함되지 않는
+			그 외의 조건일 때
+		}
+	*switch case문
+		switch(데이터) {
+			case 데이터가 1일때 :
+				처리할 내용
+				break;
+			case 데이터가 2일때 :
+				처리할 내용
+				break;
+			...
+			default:
+				위의 나열된 case가 아닐 때...
+		}
+5. 반복문 처리
+	for(초기값;반복조건;증감/연산자){
+	
+	}
+		
+	ex)for(int cnt=1;cnt<=10;cnt++);{
+		
+		}
+	//무한 반복시, 입력값에 따라 중단 처리할 때 사용
+	while(반복조건){
+	
+	}
+	do{
+	
+	}while(반복조건);
+	
+	break; : 반복을 중단 처리시 사용
+	continue; : 해당 반복 step을 중단시 사용
+6. 자바의 데이터 처리(메모리 처리 2단계)
+	stack영역과 heap영역 둘다 사용 
+	1) 배열
+		int [] arry;					선언
+		arry = new int[5];				크기를 할당(heap영역 사용)
+		arry[0] = 100;					해당 index에 데이터 할당
+		arry.length 					배열의 크기 지정
+		int [] arry = {100,200,300};	선언/크기설정/할당	
+	2) 객체 
+		(ex)
+		class Building {			클래스선언(ex..도면)을 선언
+			String name;		구성요소 필드선언
+			int age;			
+		}
+		main() {}				메모리 할당
+		Parson p01 = new Parson();
+		Parson p02 = new Parson();
+		Parson p03 = new Parson();
+				p01, p02, p03이 나타내는 것-> heap메모리의 특정 위치에 객체를 생성
+				ex) 하나의 빌딩 도면을(class중 Building이 여기 포함) 가지고 서울에 빌딩을 만들고, 부산에 빌딩을 만들고,
+				제주도에 빌딩을 만든 것과 같은...
+			
+		class Building {	클래스선언(도면)
+			String loc1;	구성요소 필드선언
+			String story;
+		}	// 도면		...	객체 메모리 활용 stack(ex.도서관 단말기)/heap(실제 책이있는 위치)
+		Building b01 = new Building();		// b01 : 메모리상 위치(서울)		
+			b01.story1 = "홍길동"				// 서울의 1층에 홍길동이란 사람 방문
+		Building b02 = new Building();		// b02 : 메모리상 위치(부산)
+			b02.story1 = "마길동"				// 부산의 1층에 마길동이란 사람 방문
+		Building b03 = new Building();		// b03 : 메모리상 위치(제주도)	
+			b03.story1 = "마길동"				// 제주도의 1층에 마길동이란 사람 방문
+			클래스명 참조변수 = new 클래스의생성자();
+7. 객체의 활용
+	1) 클래스 구성요소
+		클래스의 구성요소로 크게 필드/생성자/메서드
+	2) 필드 : 클래스를 통해 만든 객체의 기본 데이터를 할당하는 곳
+			일반적으로 객체의 필드는 접근제어를 private로 하여
+			바로 직접적으로 접근을 할 수 없게 처리한다.
+			ex)사람의 기억에 가지고 있는 정보
+				사람의 이름, 나이, 사는 곳
+	3) 생성자 : 클래스를 통해 객체가 만들어질 때, 기본 정보를 설정할때 사용한다.
+			ex) 사람이 태어날 때, 이 사람의 이름을 지정한다든가
+				나이가 정해진다든가 주민번호가 정해진다든가와 같이
+				기본 정보가 설정되는 것을 말한다.
+				Person p01 = new Parson("홍길동","25","001212-280621");
+	4) 메서드 : 각각의 메서드를 통해 기능 내용을 처리할 때 사용한다.
+				위의 필드값을 따로 저장하거나, 
+				기능적인 데이터를 가져오거나 로직에 의하여 원하는 데이터를 처리할 때 사용한다.
+				p01.getName();		//이름을 가져오는 것
+				p01.getAge();		//나이를 가져오는 것
+				p01.setAge(3);		//나이를 저장하는 것
+				
+8. 객체 vs 객체
+	객체 안에 객체를 처리하여 활용한 내용을 수행하는 것을 말한다.
+	(ex)
+		class Phone{
+			폰번호;
+			폰의 제조사;
+		}
+		class Person{
+			Phone phone;		//객체가 phone을 사용하기 위한 공간을 마련
+			String name;		//이 사람의 이름
+			Person(String name) {
+			this.name = name;
+				}
+				void setPhone(Phone phone) {
+				this.phone=phone;
+				}
+			}
+	* 접근 제어자
+		private, X(default), protected, public
+		private : 클래스 안에서만 사용하는 변수
+		X : 접근 제어자가 붙지 않는 변수, 같은 패키지 클래스에서 자유롭게 접근이 가능하나 외부 패키지는 접근불가능
+		protected : 상속에 의한 접근 제어 가능..
+					상속에 의한접근 제어 기능 상속을 한 경우에만 외부 패키지에 접근 가능
+		public : 외부패키지에 접근 가능 import로
+		3) 상속
+			- 기본 1단계
+				상위에 선언된 클래스 내용을 그대로 사용하면서 
+				하위에 있는 내용을 추가해서 사용
+				class Fatheㄴr{	
+					void running(){
+						System.out.println("운동을 한다.");
+						}
+					}
+				class Son extends Father{
+					void study(){
+						System.out.println("공부를 한다.");
+							s1.running();
+							s1.study();
+						}
+					}
+			- 메서드 오버라이딩 : 상위에 있는 내용을 재정의(매개변수도 동일할 때)
+				class Son extends Father{
+					void running()}
+					System.out.println("아들이 테니스로 운동을 한다.");
+			- 다형성 : 상위에 있는 객체 메모리에 하위 객체들을 할당하여
+						여러가지 재정의한 매서드를 처리하는 것
+				class Daughter  extends Father{
+					void running(){
+						System.out.println("딸이 탁구로 운동을 한다.");
+					* 상위 = 하위 : 여러가지 다양한 형태의 기능을 처리한다(==>다형성)
+					Father f1 = new Son(); f1.running();
+					Father f2 = new Daughter(); f2.running();
+					Father[] arr = {new Son(), new Daughter()};
+					ArrayList<Father> flist = new ArrayList<Father>
+					flist.add(new Son()); flist.add(new Daughter())
+					상위 Father로 상속한 모드 클래스는 하위 객체들이 할당 할
+					수 있는 다양한 형태로 처리가 되면, 이때 재정의한 메서드들이
+					다양한 기능을 처리
+			- 추상클래스 : 동일한 이름의 기능메서드 정의를 강제화하는 목적으로 사용함
+						상위는 껍데기로 실제로 활용할 수 없으나 하위에서는 실제 상속을
+						받아 상위에 정의한 추상메서드를 반드시 선언하고, 또한 상위에서
+						정의한 공통 내용도 처리할 수 있게 하려는 목적으로 사용된다.
+				abstract class Father {
+					void move() {	//공통메서드
+						System.out.println("이동하다");
+					}
+					abstract void running();
+					}
+					//하위 클래스에서 반드시 재정의 할 내용
+					
+					==>위와 같이 추상클래스를 통해 
+					상속 받은 하위 클래스는 공통 기능 메서드를 사용할 수 있고 
+					추상메서드를 통해 반드시 재정의하는 메서드를 선언하여 사용해야한다.
+				class Son  extends Father{
+					void running()
+					//반드시 재정의하지 않으면 에러발생(메서드 통일성)
+					System.out.println("아들은 테니스로 운동을 한다.");
+					}
+					Son s1 = new Son();
+					s1.move(); //공통기능 사용
+					Father f1 = new Son();	//다형성 처리 가능
+			- 인터페이스
+				interface Flyway{
+					void fly();	//자동으로 앞에 public abstract가 붙음
+				}
+				class CountryFly implements Flyway{
+				void fly() {
+				System.out.println("우리 동네를 나르다")
+				}
+				class CountryFly implements Flyway{
+				void fly() {
+				System.out.println("우리 나라를 나르다")
+				}
+				}
+				Flyway f1= new CountryFly(); 
+				f1.fly();
+				Flyway f2= new CountryFly(); 
+				f2.fly();
+				class Mz{
+					private Flyway flyway;
+					public void setFlyway(Flyway flyway) {
+					this.flyway = flyway;
+					public void flying() {
+					if(flyway!=null)
+						flyway.fly();
+					}else{
+						System.out.println("아직 날개가 없어 날지 못합니다");
+						}
+					}
+				}
+						Mz mz = new Mz();
+						mz.setFlyway(new CountryFly());
+						mz.flying();
+						mz.flying(new WorldFly());
+						mz.flying();
+						
+				
+				
+		
+		
+------------------------------------
+
+9. 예외 처리
+
+10. 내장된 객체
+	1) String
+	2) Wrapper 
+	3) Collection 객체 처리
+		List
+	
+---------------List-----------------
+
+Oracle 수업 진행 
+
+11. java.io 패키지내 객체 처리
+
+12. 데이터 베이스 연동 처리

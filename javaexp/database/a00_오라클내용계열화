@@ -1,0 +1,79 @@
+# database 실무처리 프로세스
+1. 요구사항정의서 : 
+   회원정보(아이디/패스워드/회원명/성별.. ==> 실제 관리할 데이터 구분)
+   
+2. 화면설계서
+3. 저장해야할 데이터를 2차원 구조 설정할 것을 계획(DB설계단계)
+	1) 요구사항 정의서/화면설계서 기준으로
+	2) 영구적데이터/임시프로그램적 데이터 구분하여
+		영구적저장할 데이터의 속성도출
+			회원정보(아이디/패드워드...)
+			회원정보 : 엔티티타입/엔티티로 구분해서 테이블과 컬럼으로
+				지정해 2차원 데이터 구조와 데이터를 입력을 준비한다.
+		테이블간의 연관관계 설정(ERD-관계데이터모델링)
+			회원정보
+			물품정보
+			회원이구매한물푼정보(관계테이블 도출)
+	3) 화면에서 사용할 sql을 작성
+		- 입력처리 : 회원등록시 입력내용 sql(insert) 
+		- 회원정보 검색(관리자) : 검색 sql(select where)
+		- 회원정보 수정/삭제 : dml sql(update/delete)
+	4) 위에서 작성한 sql을 화면과 연동한 프로세스에 의해
+		실제프로그램에서 Dao(database access object)로
+		접근해서 데이터를 처리..
+							
+# 오라클데이터베이스 knowledage map
+1. database개론
+2. sql(기본 조회 처리)
+3. sql(DML-데이터 입력/수정/삭제)
+4. sql(DDL/DCL-테이블 생성/구조변경)
+5. 권한부여
+6. DB설계
+
+# 설치
+1. oracle xe 11(서버)
+	설치
+	다운로드
+	DISK1/setup.exe 파일을 실행
+	관리자비번
+	1111
+	
+2. 클라이언트툴1(sqlplus)를 통해 sample DB생성
+	cmd
+	sqlplus
+	system
+	1111
+	로딩까지..======
+C:\oraclexe\app\oracle\product\11.2.0\server\rdbms\admin\scott.sql
+ 
+	scott.sql : 연습계정과 연습DB를 만들어주는 파일..
+	계정비번번호 변경.
+	C:\Users\user>로 scott.sql을 복사.
+cmd창에서 관리자 계정 접속한 상태에서
+@scott.sql
+conn scott/tiger
+select * from emp;
+
+localhost
+1521
+xe
+scott
+tiger
+3. 클라이언트툴2:sql developer를 통해서 접속하여 처리
+4. 클라이언트툴3:eclipse지원 dbeaver를 활용해서 처리
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+

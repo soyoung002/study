@@ -1,0 +1,331 @@
+		변수와 데이터 타입
+		**변수 선언**
+		- var(전역변수, 선언후 재선언 가능)
+		- let(지역/전역 변수 구분,선언후 재선언 불가)
+		- const(상수, 한번 선언후 초기화 되면 재할당 불가)
+		
+		변수 선언규칙
+		_, $만 가능
+		숫자로 시작할 수 없음
+		keyword 사용 불가(특징 기본 변수가 정상적으로 동작하지 않는 경우가 많음)
+						ex.name.top등..BOM/DOM에 기본 내장키가 많음.
+		
+		**기본 데이터 타입**
+		- 숫자(Number)
+		- 문자열(String)
+		- 불리언(Boolean)
+		- 함수형(function)
+		- 객체형(Object)
+		-----------------
+		- Undefined(선언되지 않고 초기화되지 않은 변수 사용)
+		- Null(객체의 경우 값이 할당되지 않은 경우)
+		- NaN(숫자형 문자열이 아닌데, 형변환 처리시..=> 실행은 되나 에러 리턴 코드)
+				ex.Hello를 숫자로 변환할때 NaN 형성...Hello는 숫자가 아니기 때문에
+		
+		**형변환**
+		- 형변환이 자유로운 편이다. 사칙연산자 + 이외에는 숫자형 문자열인 경우 자동형변환이 된다.
+			"2" + "3" ==> "23" (문자열연결)
+			"2" - "3" ==> "-1" (형변환되어 숫자 연산 처리)
+			"2" * "3" ==> "6"
+			"2" / "3" ==> "0.66666"
+		- 명시적, 암묵적 형변환
+			Number() : 실수/정수 형변환 처리
+			parseInt() : 정수형 형변환 처리. 
+						숫자만 추출해서 parseInt("25.75달러") ==> 25
+			parseFloat() : 실수형 형변환 처리 숫자만 추출
+							parseFloat("25.75달러") ==> 25.75
+		- 데이터 타입 확인하기 : typeof()함수 활용
+							ex. var myVar = 42;
+							console.log(typeof myVar)
+							==> 실행시 42는 숫자형 타입이므로 실행 문구"number"뜸
+		
+		**기본 연산자와 제어 구문**
+		1. 연산자
+		- 산술 연산자
+		- 비교 연산자
+		- 논리 연산자
+		
+		**조건문**
+		- if,else,else if
+		- 삼항 연산자
+		- switch문
+		
+		** 함수**
+		- 함수 선언과 호출
+			1) 변수형 함수
+				var fun01 = function() {	//선언
+				
+				} 
+				fun01()						//선언한 함수를 호출
+			2) 선언적 함수
+				function fun02() {			//선언
+		
+				}
+				fun02()						//호출
+				var fun03 = fun02;			//선언된 내용을 특정 변수에 재할당 
+				fun03();					//원래 fun02에 선언된 내용이
+											  재할당 되어 수행됨.		
+		- 매개변수와 반환 값
+			function plus(num01, num02) {	//매개변수
+				var sum = num01 + num02;	//로직처리(저장/반복/조건)
+				return sum;					//호출하는 곳에 전달할 리턴값
+				}
+				var tot1 = plus(25,5)
+				var tot2 = plus(25,7)
+				var tot3 = plus(30,5)
+				# 매개변수의 여러가지 유형
+				1. 기본 변수 전달
+				2. js의 type 전달(	Number(숫자),				String(문자열),
+									boolean(true/false),	function(함수),
+									object(array포함)							)
+			
+			function call(name){	//name="홍길동"
+				alert("이름:"+name)
+			}				
+			call("홍길동")
+			-------------------------------------------------------
+			function greet() {
+				alert("안녕하세요(전달하는 함수)")
+			}
+			function callAll(helloFun){	
+				// var helloFun = greet
+				alert("혼합함수")
+				helloFun();
+			}
+			callAll(greet);		// 함수에서 매개변수로 greet로 정의된 내용을 전달
+		3.익명함수 처리
+		 : 정의된 함수를 호출하여 매개변수로 전달하는 것
+		 	정의된 내용을 재활용하지 않고 바로 사용할 때 활용된다
+		 callAll(function() {	// var hello = function(){alert("익명함수전달")}
+		 alert("익명함수전달")			helloFun() 실행 처리...
+		 })							==> 결과적으로 alert("혼합함수") 수행,
+		 								alert("익명함수전달")수행 처리가 된다
+							
+		# 동적인 매개변수 처리		
+		 : 동일한 함수로 여러가지 매개변수에 따른 처리를 하고자 할 때
+		 	1) arguments
+		 		내장객체를 이용해서 매개변수의 내용을 순서에 따른 배열로 할당하여 처리..
+		 	----------------------------------------------------------------	
+		 		ex1)
+		 		function call() {
+		 			arguments[0]
+		 			arguments[1]
+		 			arguments[2]
+		 		}
+		 		call(3000)
+		 			arguments.length(1) 	//arguments[0]에 3000할당
+		 		call(1,2,3)
+		 			arguments.length(2) 	//arguments[0]에 1할당
+		 									  arguments[1]에 2할당
+		 		call("홍길동","김길동","신길동")
+		 			arguments.(3) 			
+		 			arguments[0] "홍길동"						  
+		 			arguments[1] "김길동"						  
+		 			arguments[2] "신길동"			
+		 			
+		 	----------------------------------------------------------------		
+		 		ex2)
+		 		function pointSum() {		//입력된 내용에 평균과 합산
+		 									//arguments안에 70,80이 저장됨
+		 									//arguments=[70,80]
+		 			var tot = 0;
+		 			for(var idx=0; idx<arguments.length;idx++) {	//반복문
+		 				tot += arguments[idx]
+		 			}
+		 			alert(`
+		 				통계낼 인원:${arguments.length}
+		 				총점:${tot}
+		 				평균:${tot/arguments.length}
+		 			`)
+		 		}
+		 		pointSum(70,80)
+		 		pointSum(80,80,90)
+		 		pointSum(80,80,90,90,90)
+		 					  
+		 	
+		 	----------------------------------------------------------------
+		 	
+		 	2) ...배열명 : 내가 지정한 배열명으로 매개변수 값을 선언하여 활용할 수 있다.
+		 				 위 1과 다른것은 arguments 자리에 내가 지정한 배열명이 옴 그외 같음
+		 		----------------------------------------------------------------		
+		 		ex2)
+		 		function pointSum(...points) {		
+		 			var tot = 0;
+		 			for(var idx=0; idx<point.length;idx++) {	//반복문
+		 				tot += points[idx]
+		 			}
+		 			alert(`
+		 				통계낼 인원:${point.length}
+		 				총점:${tot}
+		 				평균:${tot/points.length}
+		 			`)
+		 		}
+		 		pointSum(70,80)
+		 		pointSum(80,80,90)
+		 		pointSum(80,80,90,90,90)
+		 					  
+		 	
+		 	----------------------------------------------------------------
+		 	
+		 	3) default 매개변수: 해당 매개변수가 없을 때는 선언된 default 값으로 처리
+		 		
+		 		ex)함수명(name="이름없음",price =0, cnt=1)
+		 		----------------------------------------------------------------
+		 		function buyProd(name="구매물건없음",price=0,cnt=1){
+		 			alert(`
+		 				# 구매정보 #
+		 				물건명:${name}
+		 				가격:${price}
+		 				갯수:${cnt}
+		 				총비용:${price*cnt}
+		 			`)
+		 		}
+		 		butProd()
+		 		butProd('사과')
+		 		butProd('오렌지',3000)
+		 		butProd('수박',12000,5)
+		 		
+		 		----------------------------------------------------------------
+		 		
+		**기본 내장 함수**
+		- alert(), prompt(), confirm()
+		- 기타 유용한 내장 함수
+			Number(),parseInt(),parseFloat() : 형변환
+			eval() : 코드로 변환 처리
+			isNaN() : 형변환시, 입력값이 문자형 숫자가 아닐 때의 여부를 check해주는 boolean함수
+			setTimeout(함수,1/1000) : 해당 시간 이후 처리할 내용 함수로 구현
+			clearTimeout(변수) : 위 setTimeout을 메모리 해제 처리
+			setInterval(함수,1000) : 해당 시간 간격마다 처리할 내용을 반복
+			clearInterval(변수) : 위 setInterval 메모리 해제로 반복을 중단
+		
+		**배열**
+		- 배열 생성
+			var arry = []
+		- 배열 요소 접근
+			index로 추가 접근
+			arry[0] = 1000
+		- 배열 메서드(push,pop,shift,unshift 등)
+			배열명.push(마지막에 추가할 데이터)
+			배열명.pop() : 마지막에 내용을 삭제하면서 마지막 요소를 리턴한다.
+			
+		**객체 기초**
+		- 객체 정의와 사용
+			1) 객체 리터럴
+			2) 프로퍼티와 메서드
+			3) 객체 내부에서의 this
+			
+			
+			 JSON(javascript objection notation)
+★ 중요!!		  var 객체명 = {속성:속성값, 속성:속성값, ...}
+★ 중요!!		  var 객체형배열 = [{속성:속성값},{속성:속성값}]
+			  //서버<==>클라이언트
+			  //자바의 Person <==> json Person	
+			
+		ex)
+			var person = {name:"홍길동",age:25,loc:서울,show:function() {
+				alert(` 
+						# person의정보 #
+						이름:${this.name}
+						나이:${this.age}
+						사는곳:${this.loc}
+					`)
+				}}
+				person.name, person['age']
+			person.show() 		//객체.메서드명()
+			
+			function Person(name,age,loc){
+			this.name = name;
+			this.age= age;
+			this.loc=loc;
+			}
+			
+		var p01= new Person('홍길동',25,'서울);
+		class Person{
+			Constructor(name,age,loc){
+			this.name=name;
+			this.age=age;
+			this.loc=loc;
+			}
+		}		
+		
+		
+		----------------------------------------------------------------
+		var obj = {속성:속성값, 속성2:속성2값} : json(javascript object) ==> 객체선언 방식
+		function Person(name,age) {
+			this.name = name;
+			this.age = age;
+			this.show = function() {
+				consloe.log("#객체#")
+				consloe.log("이름:"+this.name)
+				consloe.log("나이:"+this.age)
+			}
+		}
+		var p01 = new Person("홍길동",25)
+		
+		class Car{
+			constructor(varand, model) {
+				this.brand = brand
+				this.model = model
+			}
+			displayInfo() {
+				console.log('이 차는 ${this.brand}이고 모델${this.model} 입니다')
+			}
+		}
+		var c01 = new Car("현대","그랜저")
+		c01.displayInfo()
+		
+----------------------------------------------------------------------
+		- 객체 리터럴
+		- 프로퍼티와 메서드
+		- 객체 내부에서의 this
+		
+		**DOM 조작**
+		
+		BPM(Bowser Object Model) : 브라우저 로딩시 창 자체를 의미하느 ㄴ객체
+			
+			var win = window.dopen("파일명","","속성")		
+			win.document.querySelector("h1")
+		
+		하위에 DOM(Document Object Model)의 기본 개념과 구조를 학습합니다.
+			var h10b = document.querySelector("태그");
+			
+		- Dom(Document Object Model)의 기본 개념과 구조를 파악한다.
+		- DOM을 사용하여 HTML요소를 생성,수정,삭제 하는 방법을 익힙니다
+		
+		화면에 있는 Tag를 객체화하여 동적으로 처리할 때 사용
+		<h2 style="color:blue" align="center">		//align:내장속성
+		안녕하세요</h2>  					==> 정적인 태그 구현
+		
+		==> var h2Ob = document.querySelector("h2")
+			이벤트를 속성으로 지정해서 이 이벤트를 처리했을 때,
+			함수를 할당해서 그 함수가 블럭내용을 수행해주는 처리
+		h2Ob.onclick=function(){
+		alert("Wow! touch me?");
+		h2Ob.align = "right";	//클릭시 동적으로 오른쪽 정렬 처리.
+		h2Ob.style.color="red"; //클릭시 글자 색상이 빨간색으로 지정
+		h2Ob.innerText = "hello";	//타이틀 내용변경
+		
+		
+		
+		}
+		
+		
+		** 이벤트와 기본 DOM 조작 **
+		웹페이지 이벤트
+		- click, souseover, keydown 등의 이벤트
+		[himan...] <input type = "text" name="1"
+		var jdObj = document. querySelector("[name=id]");
+		idObj.onKeyup = function() {
+		v ar idVal = jdObj.calue : 입력할때 값을 가져온다
+		if(idVal.length <= 8) {
+		alert("아이디는 8자 이상 입력하여야 합니다."
+		
+		}
+	}
+	
+			** DOM 선택과 조작 **
+		
+		
+			** 이벤트와 기본 DOM 조작 **
+		이벤트, 이벤트
+		

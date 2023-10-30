@@ -1,0 +1,149 @@
+        // 1. 커피 가격
+        System.out.print("커피의 종류를 입력하세요: ");
+        String coffee = scanner.nextLine();
+        switch (커피) {
+            case "아메리카노":
+                System.out.println("3,000원");
+                break;
+            case "카페라떼":
+                System.out.println("3,500원");
+                break;
+            case "카푸치노":
+                System.out.println("4,000원");
+                break;
+            default:
+                System.out.println("메뉴에 없는 커피입니다."); //보충 필요
+        }
+
+        // 2. 계절 출력기
+        System.out.print("월(1-12)을 입력하세요: ");
+        int month = scanner.nextInt();
+        switch (month) {
+            case 12:
+            case 1:
+            case 2:
+                System.out.println("겨울");
+                break;
+            case 3:
+            case 4:
+            case 5:
+                System.out.println("봄");
+                break;
+            case 6:
+            case 7:
+            case 8:
+                System.out.println("여름");
+                break;
+            case 9:
+            case 10:
+            case 11:
+                System.out.println("가을");
+                break;
+            default:
+                System.out.println("올바른 월을 입력하세요!");
+        }
+
+        // 3. 도형의 넓이 계산기
+        System.out.print("도형 이름을 입력하세요 (직사각형, 원, 삼각형): ");
+        String shape = scanner.next(); //문자열을 바로 입력
+        double area;
+        switch (shape) {
+            case "직사각형":
+                System.out.print("가로 길이: ");
+                double width = scanner.nextDouble();
+
+                System.out.print("세로 길이: ");
+                double height = scanner.nextDouble();
+                area = width * height;
+                System.out.println("도형의 넓이: " + area);
+                break;
+            case "원":
+                System.out.print("반지름: ");
+                double radius = scanner.nextDouble();
+				// Math.PI : 상수(변하지않는 값) 내장 api
+                area = Math.PI * radius * radius;
+                System.out.println("도형의 넓이: " + area);
+                break;
+            case "삼각형":
+                System.out.print("밑변 길이: ");
+                double base = scanner.nextDouble();
+                System.out.print("높이: ");
+                double triangleHeight = scanner.nextDouble();
+                area = (base * triangleHeight) / 2;
+                System.out.println("도형의 넓이: " + area);
+                break;
+            default:
+                System.out.println("올바른 도형 이름을 입력하세요!");
+        }
+
+        scanner = new Scanner(System.in);
+
+        // 1. for(기본)
+        for (int i = 200; i <= 300; i += 10) {
+            System.out.println(i);
+        }
+
+        for (int i = 1000; i >= 950; i -= 3) {
+            System.out.println(i);
+        }
+
+        for (int i = 100; i >= 0; i--) {				//확인해보기
+            System.out.println(i / 2.0);
+        }
+
+        // 2. 김밥 가격 계산
+        System.out.print("김밥의 단가를 입력하세요: ");
+        int price = scanner.nextInt();
+        for (int i = 1; i <= 20; i++) {
+            System.out.println(i + "개의 김밥 가격: " + (i * price) + "원");
+        }
+
+        // 3. 과일 가격 계산
+        int total = 0;
+        String prn = "no\t과일명\t가격\n";
+        for (int i = 1; i <= 3; i++) {
+           String fruitName = scanner.next();
+            int fruitPrice = scanner.nextInt();
+            prn += i + "\t"+fruitName + "\t" + fruitPrice+"\n";
+            total += fruitPrice;
+        }
+        System.out.println(prn);
+        System.out.println("총계    " + total);
+
+        // 4. 곰돌이 빵 먹기
+        System.out.println("날짜  갯수 누적");
+        int sum = 0;
+        for (int i = 1; i <= 10; i++) {
+            int today = i * 2;
+            sum += today;
+            System.out.println(i + "일차 " + today + "개  " + sum + "개");
+        }
+
+        // 5. 4의 배수 표시 및 합산
+        int fourMultipleSum = 0;
+        for (int i = 1; i <= 100; i++) {
+            if (i % 4 == 0) {
+            //4의 배수 누적 처리
+                fourMultipleSum += i;
+                System.out.print("# ");
+            } else {
+                System.out.print(i + " ");
+            }
+        }
+        System.out.println("\n4의 배수의 합: " + fourMultipleSum);
+
+        // 6. 3,6,9 게임
+        
+        //1~10 는 3,6,9는 3의 배수로 처리하면 되지만
+        //n 		11 12 13 14 15 16 17 18  19  20
+        //n%10		 1  2  3  4  5  6  7  8   9  0
+        //n%10/3 	 1  2  3  4  5  6  7  8   9  0
+        //10, 20, 30 ==> 0이기 때문에 10단위로 나누어 지는 것은 제외 ==> i%10!=0
+        
+        for (int i = 1; i <= 20; i++) {
+            if (i%10!=0 && i%10 % 3 == 0 ) {
+                System.out.print("짝 ");
+            } else {
+                System.out.print(i + " ");
+            }
+        }      

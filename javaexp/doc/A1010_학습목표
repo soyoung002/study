@@ -1,0 +1,388 @@
+1. 객체 지향 프로그래밍의 핵심은 무엇인가요? c
+   a) 절차 중심
+   b) 함수 중심
+   c) 객체 중심
+   d) 명령어 중심
+   
+
+2. Java에서 클래스의 객체를 생성하기 위한 키워드는? b
+   a) new
+   b) class
+   c) object
+   d) create
+   
+
+3. 객체 지향의 3대 특징 중 캡슐화의 목적은 무엇인가요? c
+   a) 코드 재사용
+   b) 정보 은닉
+   c) 상속성
+   d) 다양성
+   
+
+4. 생성자의 특징이 아닌 것은? d
+   a) 객체 생성시 자동 호출
+   b) 메소드와 같은 이름을 가진다.
+   c) 값을 반환하지 않는다.
+   d) 객체 내에 여러 개 존재할 수 없다
+	
+	class Book{
+	}
+	==> default 생성자가 존재할 수 있고,
+	new Book() 컴파일시 자동으로 생성 호출하여 처리할 수 있다.
+	생성자는 기능적 분류로는 함수이면 클래스명과 동일하여 생성자 오버
+	로딩 규칙에 의해서 여러개를 선언할 수 있다.
+	class Product{
+		Product(){}
+		Product(String name) {}
+		Product(String name,int price, int cnt) {
+			this.name=name;
+			this.price = price;
+			this.cnt=cnt;
+			}
+		}
+	생성자는 주로 필드값을 초기화 하는데 사용.(리턴값 없음)
+	하나의 클래스 내에서 생성자는 여러 형태의 매개변수를 통해 객체를 생성 할 수 있다.
+	Product p01=new Product();
+	Product p02=new Product("사과");
+	Product p03=new Product("오렌지",3000,2);
+	
+   
+
+5. Java에서 객체의 상속을 구현하는 키워드는? a
+   a) extends
+   b) inherits
+   c) superclass
+   d) childclass
+   
+	extends를 통해서 상속을 하면, 접근제어자의 범위내에서 필드, 메서드, 생성자를 사용할 수 있다.
+	class Father{}
+	class Son extends Fathar{}
+
+6. 클래스 내부의 변수를 무엇이라고 부르나요? b
+   a) 메소드
+   b) 필드
+   c) 생성자
+   d) 패키지
+   
+   class Person{
+   private String name;			//필드 할당
+   private HandPhone phone;		
+   Person(String name) {
+   	this.name = name;
+   	}
+   	//한번 기능메서드에 의해서 할당된 객체는
+   	//다른 메서드에서 호출하여 사용 가능
+   	//p01.buyPhone(new HandPhone(...));
+   	public void buyPhone(HandPhone phone) {	//호출하여 할당
+   		this.phone = phone;
+   		}
+   	//p01.myPhoneInfo()
+   	public show myPhoneInfo() {
+   		if(phone!=null)
+   			phone.getUsing();		//phone에 선언된 메서드 활용
+   		}else{
+   			System.out.println("폰은 소유하지 못 했습니다");
+   		}
+   	public void setName(String name) {
+   		this.name=name;
+   		}
+   	public String getName() {
+   		return name;
+   		}
+   	}
+   	
+   	1. 필드는 객체에서 핵심 저장 데이터를 선언하고 활용할 때, 사용되는 영역이다.
+   	2. 직접적인 접근은 허용하지 않기에 일반적으로 private 접근제어자를 이용한다.
+   	3. 보통 생성자를 통해서 초기값을 설정할 때가 많다.
+   	4. 저장 호출 메서드를 분리하여 저장(set)할 때와 호출(get)할 때 따로 메서드를 선언하여 사용한다.
+   		=> 객체 생성 후, 간접적으로 기능 메서드에 의해 변경 가능하게 처리함.
+    5. 필드는 외부에서 호출할 때 직접적으로 접근이 불가능하지만, 
+    	객체내에 전역변수로써 모든 기능메서드에 사용할 수 있다. 
+   
+
+7. 클래스 내부에 정의되는 기능을 나타내는 것은? c
+   a) 필드
+   b) 패키지
+   c) 메소드
+   d) 생성자
+   
+   메서드의 특징
+    - 하나의 객체에 기능적인 처리를 하기 위해 사용됨
+    - 메서드와 생성자와의 차이점 
+    	생성자는 객체 하나당 한번만 호출
+    	메서드는 객체 하나를 통해 여러번 호출 가능
+    	메서드는 리턴값 있음. ==> 최종 처리된 데이터를 type선언에 맞게 리턴 할수도 있고 안할수도 있음.
+    						리턴 값이 없을때는 void로 선언					
+    - 저장/호출/출력/로직 처리 등에 사용
+    - 기본 형식
+    	public 리턴 유형메서드명(매개변수) {
+    		return 리턴할 데이터;
+    	}
+   
+
+8. Java에서 상수를 선언하기 위한 키워드는? a
+   a) final
+   b) constant
+   c) static
+   d) define
+   
+   * final 
+    1. 필드에서 사용할 때, 상수로 사용된다.
+    	==> final로 선언된 필드는 한번 초기화 되면 변경할 수 없다.
+    	
+    	private final String name;
+    	public static final String KIND="인류";	
+    	//static과 final이 동시에 사용되면 객체 공유는 상수이므로 위와 같이 초기화하여 
+    	//모든 객체에 동일하게 변경할 수 없는 상수가된다.
+    	//Person.KIND : 객체 공유 클래스 상수 설정(상수를 정하는 명은 대문자를 주로 씀.)
+    	Person(String name) {
+    		this.name=name;
+    	}
+    	Person p01 = new Person("홍길동");
+    	p01.setName("김길동");				//다른 기능 메서드나 필드로 변경 불가능(X)
+    	Person p02 = new Person("마길동");	//각, 객체별로 선언된 상수로 사용
+    	
+    2. 메서드 : 상속 하위에서 재정의 불가능
+    	final void call(){}
+    	
+    3. 클래스 : 상속이 불가능한 클래스
+    	final class Person{}
+    	class Son extends Person{} (X) 에러발생
+    	
+   
+
+9. 객체 지향의 3대 특징 중 코드의 재사용성을 높이는 것은? c
+   a) 다형성
+   b) 캡슐화
+   c) 상속성
+   d) 추상화
+   
+   * 객체를 상속하면, 
+   	 상위에 있는 멤버(필드/생성자/메서드)를 접근제어자 범위 내에서 직/간접적으로 사용 가능
+   
+
+10. Java에서 모든 클래스의 최상위 클래스는 무엇인가요? a
+   a) Object
+   b) Superclass
+   c) Mainclass
+   d) Parentclass
+   
+   자바는 Object라는 api(내장)에 있는 클래스가 모든 객체를 기본적으로 상속하고 있다.
+   Object가 가지고 있는 기본 생성자/필드/메서드를 사용할 수 있음.
+   
+11. 객체 지향 프로그래밍에서 객체 간의 메시지 전달 방식은? b
+   a) 변수 전달
+   b) 메소드 호출
+   c) 생성자 호출
+   d) 패키지 전달
+   
+   1:1 객체
+   class ShoppMall{
+   	private Product product;
+   	public void addProduct(Product product) {
+   		this.product=product;
+   		}
+   }
+   class Product{
+   }
+  
+
+12. 객체를 생성할 때 초기화 작업을 위해 사용되는 것은? d
+   a) 패키지
+   b) 메소드
+   c) 변수
+   d) 생성자
+   
+   Person p01 = new Person("홍길동",25,"서울");
+   //생성자를 통해 객체의 필드값을 초기화 가능
+  
+
+13. 인스턴스 변수의 접근 제한자로 가장 넓은 범위를 가지는 것은? a
+   a) public
+   b) private
+   c) protected
+   d) default
+   
+   private 			 	< 		 X : default					< 			product							  < 	public 
+   class 외에 접근 못함  		 같은 package까지 접근 가능한 변수		  	상속관계에 다른 패키지의 클래스까지 접근 가능	 			다른 패키지라도 import 선언시 접근 가능
+  
+
+14. 클래스를 설계할 때, 객체의 속성을 나타내는 것은? 
+   a) 메소드
+   b) 필드
+   c) 생성자
+   d) 인터페이스
+   
+
+15. 클래스의 구성요소가 아닌 것은? d
+   a) 필드
+   b) 메소드
+   c) 생성자
+   d) 패키지
+   
+   패키지 클래스를 묶음 단위로 묶는 구성 요소
+	보통, 클래스명 가장 위에 선언하고 외부 패키지의 클래스를 사용할 때 import를 통해 사용 가능
+
+16. 'is-a' 관계를 나타내는 객체 지향 원리는? b
+   a) 캡슐화
+   b) 상속
+   c) 다형성
+   d) 추상화
+   
+   Man is a Person ==> is a는 하나의 종류를 나타내서 상위와 하위 관계를 나타낼 때 사용
+   Person has a name;	==> has는 포함하는 속성이나 메서드를 지칭할 때 사용된다.
+   
+
+17. 객체 지향 프로그래밍에서 상태와 행동을 가지는 개체를 무엇이라 부르나요? c
+   a) 메소드
+   b) 클래스
+   c) 객체
+   d) 패키지
+   
+   클래스를 통해 선언하여 여러가지 개별 객체를 처리하는 것을 객체라고 함
+   하나의 클래스로부터 구체적으로 생성자를 통하여 여러 객체가 만들어지고 
+   이 객체는 필드를 통해 상대값을 가지고 메서드를 통해 기능/행동 처리 가능
+  
+
+18. 다형성의 원리 중, 하나의 변수명, 함수명 등이 여러 의미로 사용되는 것을 무엇이라 부르나요? b
+   a) 오버로딩
+   b) 오버라이딩
+   c) 상속
+   d) 인터페이스
+   
+   오버로딩 : 동일한 생성자명/메서드명을 통해 여러가지 매개변수 갯수/타입에 따라 구분할 수 있게 선언하는 것
+   오버라이딩 : 상속관계에서 동일한 기능메서드(메서드명/매개변수도 동일하게..)이지만 여러가지 기능을 다형적으로 처리할
+   			목적으로 선언하는 것
+
+19. 자식 클래스에서 부모 클래스의 메소드를 재정의하는 것을 무엇이라 부르나요? b
+   a) 오버로딩
+   b) 오버라이딩
+   c) 상속
+   d) 인터페이스
+   
+
+20. 객체 지향 프로그래밍에서 클래스 간의 계층관계를 설정하는 원리는? b
+   a) 캡슐화
+   b) 상속
+   c) 다형성
+   d) 추상화
+   	
+   	class Parent{}
+   	class Son extends Parent{} 
+   	class Daughter extends Parent{}
+   	class GrandSon extends Son{}
+   
+
+21. 객체 지향 프로그래밍에서 여러 객체를 묶어 하나의 단위로 관리하는 것은? b
+   a) 배열
+   b) 패키지
+   c) 메소드
+   d) 생성자
+   
+
+22. 인스턴스의 주소값을 참조하는 변수를 무엇이라 부르나요? a
+   a) 참조 변수
+   b) 인스턴스 변수
+   c) 정적 변수
+   d) 지역 변수
+   
+   참조 변수(reference variables)
+   객체는 heap메모리의 특정한 주소값을 stack영역에 할당하여 사용한다.
+   heap메모리를 참조하여 사용한다는 의미로 참조변수라고도 함
+   Person p01= new Person();
+   p01:객체의 참조 변수(패키지명.클래스며@16진수코드주소값
+   p01.getName():해당 참조 주소에 있는 구성요소(필드/메서드) 접근하여 사용
+   
+
+23. Java에서 메모리 영역 중 객체가 생성되는 영역은? c
+   a) Stack		: 객체의 경우 heap영역의 주소값을 저장 
+   b) Method	
+   c) Heap		
+   d) Class		
+   
+
+24. 클래스의 특정 객체만을 위한 변수를 무엇이라 부르나요? b
+   a) 클래스 변수
+   b) 인스턴스 변수
+   c) 지역 변수
+   d) 정적 변수
+   
+   클래스에서 하나씩 객체를 instance화하여 처리했다는 개념으로 사용
+   
+
+25. 같은 클래스의 멤버들 간에 공유되는 변수는? a
+   a) 클래스 변수
+   b) 인스턴스 변수
+   c) 지역 변수
+   d) 정적 변수
+   
+   * 클래스의 멤버란.. 
+     클래스를 구성하고 있는 필드/생성자/메서드에 의해 전역변수 역할을 하므로 클래스 변수로 이해할 수 있다.
+     
+   class Person {
+  	 	String name;
+   
+  		Person(String name) {
+   			this.name=name;
+   		}
+   		void getName() {
+   			return name;
+  		}
+   } 
+   
+
+26. 클래스 내에서만 접근이 가능한 접근 제한자는? b
+   a) public
+   b) private
+   c) protected
+   d) default
+   
+
+27. 부모 클래스의 필드나 메소드를 자식 클래스에서 사용할 수 있도록 하는 객체 지향 원리는? b
+   a) 캡슐화
+   b) 상속
+   c) 다형성
+   d) 추상화
+   
+   class Father {
+   		String name;
+   }
+   class Son extends Father{
+   }
+   Son s1 = new Son();
+   s1.name="홍길동";		//Father 클래스에 선언된 필드를 상속에 의해 사용 가능
+   
+
+28. 객체 지향 프로그래밍에서 하나의 객체를 여러 가지 자료형으로 처리할 수 있게 하는 원리는? c
+   a) 캡슐화
+   b) 상속
+   c) 다형성
+   d) 추상화
+   
+   class Larba{
+   	void attack() {}
+   }
+   class Dron extends Larba{
+   	void attack() {
+   		System.out.println("공격력 1로 공격하다")
+   		}	
+   }
+   class Hydra extends Larba{
+   	void attack() {
+   		System.out.println("공격력 3로 공격하다")
+   		}	
+   }
+
+29. 객체 지향 프로그래밍에서 객체의 특징 중 상태를 나타내는 것은? b
+   a) 메소드
+   b) 변수
+   c) 생성자
+   d) 패키지
+   
+
+30. Java의 모든 클래스는 어떤 클래스를 상속받나요? d
+   a) Superclass
+   b) Parentclass
+   c) Mainclass
+   d) Object
+   

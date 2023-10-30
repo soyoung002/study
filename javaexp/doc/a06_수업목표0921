@@ -1,0 +1,22 @@
+* 주요 핵심 키워드와 개념
+
+메소드(Method)
+	- 매개변수(Parameter) : 메소드 호출 시 값을 전달받는 변수
+	- 반환 값(Return Value) : 메소드 실행 후 반환되는 결과 값
+	- 필드(Field) : 클래스내부에서 데이터를 저장하는 부분
+	- 생성자(Constructor) : 객체 생성과 초기화를 담당하는 특별한 메서드
+	- 정적 멤버(Static Member) : 클래스 자체에 속하는 필드나 메서드
+	- 접근제한자(Access Modifier)
+	- private, X(default), [protected], public : 클래스,필드,생성자,메소드
+							접근 범위를 제한하는 키워드
+	- this 키워드 : 현재 객체의 인스턴스 변수나 메서드에 접근할 때 사용하는 키워드
+	
+	
+	public class Emp{
+		private int empno;
+		private int empno;
+		private int empno;
+		private int empno;
+		
+		
+	}

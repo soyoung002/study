@@ -1,0 +1,28 @@
+### 학습 목표 ###
+- 반복문의 필요성과 주요 유형 ('for', 'while', 'do-while')을 이해한다.
+- 각 반복문의 동작 방식을 이해하고, 주어진 문제에 적절한 반복문을 선택할 수 있다.
+- 조건문(if, else if, else, switch)을 사용하여 프로그램의 흐름을 제어하는 방법이 있다.
+- 복합 문제를 해결하기 위해 반복문과 조건문을 조합하는 방법을 배운다.
+
+### 간단한 퀴즈 ###
+*** 객관식 ***
+1) 다음 중 for 반복문 중 기본 구조와 가장 유사한 것은?
+ a. for(value; condition; increment)'
+ b. for(condition; increment; value)'
+ c. for(initialization; condition; update)'
+ d. loop(initialization; condition;  update)'
+ 
+2) while 과 do-while 의 주요 차이점은 무엇인가요?
+ a. while 은 조건이 거짓일 때도 한 번 실행된다.
+ b. do-while 은 조건이 거짓 일때도 한 번 실행된다.
+ c. do-while 은 무한 반복만 수행 할 수 있다.
+ d. 위의 모든 내용이 옳다.
+ 
+### 주요 핵심 키워드와 개념 ###
+**반복문(Loop)** : 동일한 코드 블록을 여러 번 실행하려는 경우 사용하는 것
+ - for : 초기화, 조건, 증감의 세 부분으로 구성된다.
+ - while : 조건이 참인 동안 계속 실행된다. 
+ - do-while : 최소 한번은 실행 후, 조건이 참인 동안 계속 실행한다.
+**제어문(Control Statement)** : 프로그램의 흐름을 제어하기 위해 사용하는 것
+ - if-else : 조건에 따라 다른 코드 블록을 실행한다.
+ - switch : 변수의 값에 따라 여러 코드 블록 중 하나를 실행한다.

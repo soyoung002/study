@@ -1,0 +1,51 @@
+# 객체대객체 관계 내용 계열화(객체-객체)
+1. 객체 대 객체 관계의 프로그래밍적인 이해
+	- 실무적인 상황
+		로그인한 회원이 물건을 단일 물건 구매
+		MVC 패턴에서 Controller가 Service단 호출
+		Service단이 Dao단 호출
+		인사 프로그램에서 사원이 특정한 부서에 소속된 처리
+		
+2. 단계별 프로그램 처리
+	1) 필드 선언
+		포함될 클래스 선언
+		ex) class Car{}
+		포함할 클래스 선언하면 필드값으로 선언
+		ex) class CarOwn{
+		private String name;
+		private Car car;	//차주가 가지고 있는 차
+		}
+		
+	2) 생성자 또는 메서드의 매개변수로 객체 
+	main()
+		CarOwner co1 = new CarOwner("홍길동");
+		String name="마길동";		//변수를 선언하여
+		co01.setName(name);		//해당 변수를 메서드에 할당
+		setName(String name01) String name01 = name;
+		
+		co01.setName(오길동);		//데이터 자체를 할당
+		setName(String name01) String name01 = "오길동";
+	
+		public void setName(String name) {
+			this.name = name01;
+		}
+	
+	Car c1= new Car("현대","소나타");
+	co01.buyCar(c1);	//객체는 메서드를 통해 할당
+	void buy Car(Car car) { //Car car = c1;
+	
+	co01.buyCar(new Car(기아","k7") 
+	//객체 메서드를 통해서 할당하고 다른 객체 소유 객체를 변경
+		void buyCar(Car car) {	//Car car = new Car("기아","k7");
+		this.car = car
+		}	
+	//구매를 통해 Car 객체를 CarOwner객체에 구셩오소인 Car에 할당
+
+
+	3) 전달된 객체의 메모리에 따른 기능 함수의 처리
+		void drivingCar() {
+		System.out.pringtln("차주의 기본 정보 출력"+name }
+		if(car!=null) {	//Car객체가 new Car()형태로 할당되어 있는 경우
+		}else{	//할당되지 않는 경우
+		System.out.pringtln("차가 없습니다." }
+		}
